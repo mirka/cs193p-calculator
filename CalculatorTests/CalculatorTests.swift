@@ -99,13 +99,22 @@ class CalculatorTests: XCTestCase {
     XCTAssertEqual(brain.description, "√(3+5),cos(π)")
   }
 
-  func testParens() {
+  func testParens1() {
     brain.pushOperand(3)
     brain.pushOperand(5)
     brain.pushOperand(4)
     brain.performOperation("+")
     brain.performOperation("×")
     XCTAssertEqual(brain.description, "3×(5+4)")
+  }
+
+  func testParens2() {
+    brain.pushOperand(3)
+    brain.pushOperand(6)
+    brain.performOperation("+")
+    brain.pushOperand(3)
+    brain.performOperation("÷")
+    XCTAssertEqual(brain.description, "(3+6)÷3")
   }
 
     func testPerformanceExample() {

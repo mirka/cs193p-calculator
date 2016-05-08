@@ -10,7 +10,6 @@ import Foundation
 
 class CalculatorBrain {
   private var opStack = [Op]()
-  private var historyDescription = ""
   private var knownOps = Dictionary<String, Op>()
   private var variableValues = Dictionary<String, Double>()
 
@@ -28,13 +27,16 @@ class CalculatorBrain {
         case .UnaryOperation(let operation, _):
           let (string, remainingOps) = stringify(remainingOps)
           let expression = "\(operation)(\(string))"
-          historyDescription += expression + ","
           return (expression, remainingOps)
         case .BinaryOperation(let operation, _):
           let (op1String, op1Remaining) = stringify(remainingOps)
           let (op2String, op2Remaining) = stringify(op1Remaining)
-          let expression = "\(op2String)\(operation)\(op1String)"
-          historyDescription += expression + ","
+          var expression = ""
+          if op.precedence > remainingOps.last?.precedence {
+            expression = "\(op2String)\(operation)(\(op1String))"
+          } else {
+            expression = "\(op2String)\(operation)\(op1String)"
+          }
           return (expression, op2Remaining)
         case .Constant(let operand, _):
           return ("\(operand)", remainingOps)
@@ -101,19 +103,30 @@ class CalculatorBrain {
     case Constant(String, Double)
     
     var description: String {
-      get {
-        switch self {
-        case .Operand(let operand):
-          return String(format: "%g", operand)
-        case .Variable(let variable):
-          return "\(variable)"
-        case .UnaryOperation(let symbol, _):
-          return symbol
-        case .BinaryOperation(let symbol, _):
-          return symbol
-        case .Constant(let symbol, _):
-          return symbol
+      switch self {
+      case .Operand(let operand):
+        return String(format: "%g", operand)
+      case .Variable(let variable):
+        return "\(variable)"
+      case .UnaryOperation(let symbol, _):
+        return symbol
+      case .BinaryOperation(let symbol, _):
+        return symbol
+      case .Constant(let symbol, _):
+        return symbol
+      }
+    }
+
+    var precedence: Int {
+      switch self {
+      case .BinaryOperation(let symbol, _):
+        if symbol == "×" || symbol == "÷" {
+          return 2
+        } else {
+          return 1
         }
+      default:
+        return Int.max
       }
     }
   }
@@ -150,10 +163,7 @@ class CalculatorBrain {
 
   // Evaluate stack and return result
   func evaluate() -> Double? {
-    let (result, remainder) = evaluate(opStack)
-//    print("\(opStack) = \(result!) with \(remainder) left over")
-    print(description)
-    return result
+    return evaluate(opStack).result
   }
   
   func pushOperand(operand: Double) -> Double? {
@@ -182,6 +192,5 @@ class CalculatorBrain {
   
   func clearStack() {
     opStack.removeAll()
-    historyDescription.removeAll()
   }
 }
