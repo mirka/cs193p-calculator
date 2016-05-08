@@ -50,7 +50,7 @@ class CalculatorBrain {
       strings.insert(result, atIndex: 0)
       remainingOps = ops
     }
-    return strings.map { String($0) }.joinWithSeparator(", ")
+    return strings.map { String($0) }.joinWithSeparator(",")
   }
 
   var history: String {
