@@ -99,6 +99,15 @@ class CalculatorTests: XCTestCase {
     XCTAssertEqual(brain.description, "√(3+5),cos(π)")
   }
 
+  func testParens() {
+    brain.pushOperand(3)
+    brain.pushOperand(5)
+    brain.pushOperand(4)
+    brain.performOperation("+")
+    brain.performOperation("×")
+    XCTAssertEqual(brain.description, "3×(5+4)")
+  }
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {

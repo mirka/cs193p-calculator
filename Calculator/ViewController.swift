@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     if let constant = sender.currentTitle {
       if let result = brain.pushConstant(constant) {
         displayValue = result
-        history.text = brain.history
+        history.text = brain.description
       }
     }
   }
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     if let operation = sender.currentTitle {
       if let result = brain.performOperation(operation) {
         displayValue = result
-        history.text = brain.history + " ="
+        history.text = brain.description + " ="
       }
     }
   }
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     if let value = displayValue {
       if let result = brain.pushOperand(value) {
         displayValue = result
-        history.text = brain.history
+        history.text = brain.description
       }
     }
   }
