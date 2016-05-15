@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
     set {
       if let value = newValue {
-        display.text = String(value)
+        display.text = String(format: "%g", value)
       } else {
         display.text = "0"
       }
