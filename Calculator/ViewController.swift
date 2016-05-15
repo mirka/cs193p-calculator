@@ -82,9 +82,7 @@ class ViewController: UIViewController {
     }
     
     if let operation = sender.currentTitle {
-      if let result = brain.performOperation(operation) {
-        displayValue = result
-      }
+      displayValue = brain.performOperation(operation)
       updateHistory()
     }
   }
