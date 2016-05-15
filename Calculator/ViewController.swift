@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 
   func updateHistory() {
     history.text = brain.description
-    if !userIsInTheMiddleOfTypingANumber {
+    if !userIsInTheMiddleOfTypingANumber && history.text != "" {
       history.text? += " ="
     }
   }
