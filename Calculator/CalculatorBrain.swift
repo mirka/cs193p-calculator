@@ -31,11 +31,13 @@ class CalculatorBrain {
         case .BinaryOperation(let operation, _):
           let (op1String, op1Remaining) = stringify(remainingOps)
           let (op2String, op2Remaining) = stringify(op1Remaining)
-          var expression = ""
+          var expression = "\(op2String)\(operation)\(op1String)"
           if op.precedence > remainingOps.last?.precedence {
             expression = "\(op2String)\(operation)(\(op1String))"
-          } else {
-            expression = "\(op2String)\(operation)\(op1String)"
+          } else if let previousOp = op1Remaining.last {
+            if op.precedence > previousOp.precedence {
+              expression = "(\(op2String))\(operation)\(op1String)"
+            }
           }
           return (expression, op2Remaining)
         case .Constant(let operand, _):
@@ -53,12 +55,6 @@ class CalculatorBrain {
       remainingOps = ops
     }
     return strings.map { String($0) }.joinWithSeparator(",")
-  }
-
-  var history: String {
-    get {
-      return opStack.map { String($0) }.joinWithSeparator(", ")
-    }
   }
 
   init() {
