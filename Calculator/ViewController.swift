@@ -23,12 +23,19 @@ class ViewController: UIViewController {
       if let value = newValue {
         display.text = String(format: "%g", value)
       } else {
-        display.text = "0"
+        display.text = " "
       }
       userIsInTheMiddleOfTypingANumber = false
     }
   }
-  
+
+  func updateHistory() {
+    history.text = brain.description
+    if !userIsInTheMiddleOfTypingANumber {
+      history.text? += " ="
+    }
+  }
+
   // Append digit or dot
   @IBAction func appendChar(sender: UIButton) {
     let char = sender.currentTitle!
@@ -42,15 +49,31 @@ class ViewController: UIViewController {
       display.text = char
       userIsInTheMiddleOfTypingANumber = true
     }
+    updateHistory()
   }
 
   @IBAction func appendConstant(sender: UIButton) {
     if let constant = sender.currentTitle {
       if let result = brain.pushConstant(constant) {
         displayValue = result
-        history.text = brain.description
+        updateHistory()
       }
     }
+  }
+
+  @IBAction func setVariable() {
+    if let value = displayValue {
+      brain.variableValues["M"] = value
+      userIsInTheMiddleOfTypingANumber = false
+      displayValue = brain.evaluate()
+      updateHistory()
+    }
+  }
+
+  @IBAction func getVariable() {
+    brain.pushOperand("M")
+    displayValue = brain.evaluate()
+    updateHistory()
   }
   
   @IBAction func operate(sender: UIButton) {
@@ -61,8 +84,8 @@ class ViewController: UIViewController {
     if let operation = sender.currentTitle {
       if let result = brain.performOperation(operation) {
         displayValue = result
-        history.text = brain.description + " ="
       }
+      updateHistory()
     }
   }
   
@@ -88,6 +111,7 @@ class ViewController: UIViewController {
     display.text = "0"
     history.text = ""
     brain.clearStack()
+    brain.variableValues.removeAll()
   }
   
   @IBAction func enter() {
@@ -95,7 +119,7 @@ class ViewController: UIViewController {
     if let value = displayValue {
       if let result = brain.pushOperand(value) {
         displayValue = result
-        history.text = brain.description
+        updateHistory()
       }
     }
   }

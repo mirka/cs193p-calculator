@@ -11,7 +11,7 @@ import Foundation
 class CalculatorBrain {
   private var opStack = [Op]()
   private var knownOps = Dictionary<String, Op>()
-  private var variableValues = Dictionary<String, Double>()
+  var variableValues = Dictionary<String, Double>()
 
   var description: String {
     func stringify(ops: [Op]) -> (result: String, remainingOps: [Op]) {

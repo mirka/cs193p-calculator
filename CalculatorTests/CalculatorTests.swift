@@ -117,11 +117,12 @@ class CalculatorTests: XCTestCase {
     XCTAssertEqual(brain.description, "(3+6)÷3")
   }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+  func testMemoryButton() {
+    brain.pushOperand(7)
+    brain.pushOperand("M")
+    brain.performOperation("+")
+    brain.performOperation("√")
+    XCTAssertEqual(brain.description, "√(7+M)")
+  }
+
 }
