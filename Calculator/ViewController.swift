@@ -96,6 +96,12 @@ class ViewController: UIViewController {
   }
   
   @IBAction func backspace() {
+    if !userIsInTheMiddleOfTypingANumber {
+      displayValue = brain.removeLastStackItem()
+      if brain.opStackIsEmpty { display.text = "0" }
+      updateHistory()
+      return
+    }
     guard display.text?.characters.count > 1 else {
       display.text = "0"
       userIsInTheMiddleOfTypingANumber = false
@@ -106,9 +112,9 @@ class ViewController: UIViewController {
   
   @IBAction func clear() {
     userIsInTheMiddleOfTypingANumber = false
-    display.text = "0"
-    history.text = ""
     brain.clearStack()
+    display.text = "0"
+    updateHistory()
     brain.variableValues.removeAll()
   }
   

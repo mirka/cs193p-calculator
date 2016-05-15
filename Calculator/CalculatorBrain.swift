@@ -12,6 +12,7 @@ class CalculatorBrain {
   private var opStack = [Op]()
   private var knownOps = Dictionary<String, Op>()
   var variableValues = Dictionary<String, Double>()
+  var opStackIsEmpty: Bool { return opStack.isEmpty }
 
   var description: String {
     func stringify(ops: [Op]) -> (result: String, remainingOps: [Op]) {
@@ -183,6 +184,11 @@ class CalculatorBrain {
     if let operation = knownOps[symbol] {
       opStack.append(operation)
     }
+    return evaluate()
+  }
+
+  func removeLastStackItem() -> Double? {
+    opStack.popLast()
     return evaluate()
   }
   
