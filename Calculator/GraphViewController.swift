@@ -13,6 +13,7 @@ class GraphViewController: UIViewController {
   @IBOutlet weak var graph: GraphView! {
     didSet {
       graph.addGestureRecognizer(UIPanGestureRecognizer(target: graph, action: #selector(GraphView.panGraph)))
+      graph.addGestureRecognizer(UIPinchGestureRecognizer(target: graph, action: #selector(GraphView.scaleGraph)))
     }
   }
 
