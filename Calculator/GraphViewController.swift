@@ -14,4 +14,21 @@ class GraphViewController: UIViewController {
     didSet {
     }
   }
+
+  @IBAction func panGraph(sender: UIPanGestureRecognizer) {
+    switch sender.state {
+    case .Ended: fallthrough
+    case .Changed:
+      let translation = sender.translationInView(view)
+      let newOrigin = CGPointMake(graph.origin!.x + translation.x, graph.origin!.y + translation.y)
+      graph.origin = newOrigin
+      updateUI()
+      sender.setTranslation(CGPointZero, inView: view)
+    default: break
+    }
+  }
+
+  private func updateUI() {
+    graph.setNeedsDisplay()
+  }
 }

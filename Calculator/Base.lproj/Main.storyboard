@@ -396,18 +396,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWn-ow-73Y" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="560" height="560"/>
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="LWn-ow-73Y" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9us-Av-9AM" appends="YES" id="wgL-VM-IZR"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LWn-ow-73Y" firstAttribute="top" secondItem="gUk-gw-8ci" secondAttribute="bottom" id="0Hj-9J-xjC"/>
-                            <constraint firstItem="LWn-ow-73Y" firstAttribute="leading" secondItem="4lV-35-0eQ" secondAttribute="leadingMargin" id="8SA-oB-3TI"/>
-                            <constraint firstItem="LWn-ow-73Y" firstAttribute="trailing" secondItem="4lV-35-0eQ" secondAttribute="trailingMargin" id="XUg-KQ-iwX"/>
-                            <constraint firstAttribute="bottom" secondItem="LWn-ow-73Y" secondAttribute="bottom" constant="20" symbolic="YES" id="arL-gH-vRO"/>
+                            <constraint firstItem="LWn-ow-73Y" firstAttribute="top" secondItem="gUk-gw-8ci" secondAttribute="bottom" id="1Uy-DD-u9v"/>
+                            <constraint firstItem="LWn-ow-73Y" firstAttribute="leading" secondItem="4lV-35-0eQ" secondAttribute="leading" id="D1e-Fo-bKM"/>
+                            <constraint firstAttribute="trailing" secondItem="LWn-ow-73Y" secondAttribute="trailing" id="cd2-bs-qZT"/>
+                            <constraint firstItem="LWn-ow-73Y" firstAttribute="bottom" secondItem="SMg-oC-NA9" secondAttribute="top" id="nSP-vU-CkM"/>
+                            <constraint firstItem="LWn-ow-73Y" firstAttribute="top" secondItem="4lV-35-0eQ" secondAttribute="top" constant="20" symbolic="YES" id="zqa-C0-y4d"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1Uy-DD-u9v"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="NDm-oT-sYT"/>
                     <connections>
@@ -415,6 +425,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlR-t5-Jc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9us-Av-9AM">
+                    <connections>
+                        <action selector="panGraph:" destination="ra6-gv-B7a" id="CBC-NL-kFb"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1416" y="908"/>
         </scene>
@@ -469,6 +484,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="apm-pC-Efd"/>
+        <segue reference="rHf-fV-5Zs"/>
     </inferredMetricsTieBreakers>
 </document>
