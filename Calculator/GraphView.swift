@@ -9,8 +9,8 @@
 import UIKit
 
 class GraphView: UIView {
-  var origin: CGPoint?
-  var scale: CGFloat = 1
+  @IBInspectable var origin: CGPoint? { didSet { setNeedsDisplay() } }
+  @IBInspectable var scale: CGFloat = 1 { didSet { setNeedsDisplay() } }
 
   override func drawRect(rect: CGRect) {
     if origin == nil {
@@ -18,5 +18,16 @@ class GraphView: UIView {
     }
     let axes = AxesDrawer(color: UIColor.darkGrayColor())
     axes.drawAxesInRect(rect, origin: origin!, pointsPerUnit: 50)
+  }
+
+  func panGraph(sender: UIPanGestureRecognizer) {
+    switch sender.state {
+    case .Ended: fallthrough
+    case .Changed:
+      let translation = sender.translationInView(self)
+      origin = CGPointMake(origin!.x + translation.x, origin!.y + translation.y)
+      sender.setTranslation(CGPointZero, inView: self)
+    default: break
+    }
   }
 }

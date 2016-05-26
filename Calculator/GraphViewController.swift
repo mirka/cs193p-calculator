@@ -12,19 +12,7 @@ class GraphViewController: UIViewController {
 
   @IBOutlet weak var graph: GraphView! {
     didSet {
-    }
-  }
-
-  @IBAction func panGraph(sender: UIPanGestureRecognizer) {
-    switch sender.state {
-    case .Ended: fallthrough
-    case .Changed:
-      let translation = sender.translationInView(view)
-      let newOrigin = CGPointMake(graph.origin!.x + translation.x, graph.origin!.y + translation.y)
-      graph.origin = newOrigin
-      updateUI()
-      sender.setTranslation(CGPointZero, inView: view)
-    default: break
+      graph.addGestureRecognizer(UIPanGestureRecognizer(target: graph, action: #selector(GraphView.panGraph)))
     }
   }
 
