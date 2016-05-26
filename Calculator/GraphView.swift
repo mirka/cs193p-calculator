@@ -20,21 +20,25 @@ class GraphView: UIView {
     axes.drawAxesInRect(rect, origin: origin!, pointsPerUnit: scale)
   }
 
-  func panGraph(sender: UIPanGestureRecognizer) {
-    switch sender.state {
+  func panGraph(gesture: UIPanGestureRecognizer) {
+    switch gesture.state {
     case .Ended: fallthrough
     case .Changed:
-      let translation = sender.translationInView(self)
+      let translation = gesture.translationInView(self)
       origin = CGPointMake(origin!.x + translation.x, origin!.y + translation.y)
-      sender.setTranslation(CGPointZero, inView: self)
+      gesture.setTranslation(CGPointZero, inView: self)
     default: break
     }
   }
   
-  func scaleGraph(sender: UIPinchGestureRecognizer) {
-    if sender.state == .Changed {
-      scale *= sender.scale
-      sender.scale = 1
+  func scaleGraph(gesture: UIPinchGestureRecognizer) {
+    if gesture.state == .Changed {
+      scale *= gesture.scale
+      gesture.scale = 1
     }
+  }
+
+  func setOrigin(tap: UITapGestureRecognizer) {
+    origin = tap.locationInView(self)
   }
 }

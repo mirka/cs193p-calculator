@@ -17,6 +17,10 @@ class GraphViewController: UIViewController {
     }
   }
 
+  @IBAction func setOrigin(tap: UITapGestureRecognizer) {
+    graph.setOrigin(tap)
+  }
+
   private func updateUI() {
     graph.setNeedsDisplay()
   }
