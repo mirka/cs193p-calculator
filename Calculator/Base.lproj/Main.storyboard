@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Calculator View Controller-->
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CalculatorViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +230,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Graph"/>
                                 <connections>
-                                    <segue destination="ra6-gv-B7a" kind="showDetail" identifier="showGraph" id="apm-pC-Efd"/>
+                                    <segue destination="hZr-ph-3BS" kind="showDetail" id="u6A-ty-RkY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0I-ak-uNc">
@@ -374,7 +374,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="uUO-aB-ihK"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="uUO-aB-ihK"/>
                     <connections>
                         <outlet property="display" destination="Hie-fK-Ynf" id="bpZ-G2-5uN"/>
                         <outlet property="history" destination="YVY-6q-Ej6" id="lqq-dv-XVH"/>
@@ -384,7 +384,7 @@
             </objects>
             <point key="canvasLocation" x="1416" y="134"/>
         </scene>
-        <!--Graph View Controller-->
+        <!--Graph-->
         <scene sceneID="3nw-6r-pWq">
             <objects>
                 <viewController id="ra6-gv-B7a" customClass="GraphViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -419,7 +419,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="NDm-oT-sYT"/>
+                    <navigationItem key="navigationItem" title="Graph" id="NDm-oT-sYT"/>
                     <connections>
                         <outlet property="graph" destination="LWn-ow-73Y" id="11L-fp-Kgu"/>
                     </connections>
@@ -484,6 +484,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rHf-fV-5Zs"/>
+        <segue reference="u6A-ty-RkY"/>
     </inferredMetricsTieBreakers>
 </document>
