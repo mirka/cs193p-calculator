@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BF916EF31CA3046500324910 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF916EF21CA3046500324910 /* CalculatorBrain.swift */; };
 		BFA08BDF1CF715DD0052E058 /* AxesDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA08BDE1CF715DD0052E058 /* AxesDrawer.swift */; };
+		BFA08BE21CF71C910052E058 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA08BE11CF71C910052E058 /* GraphViewController.swift */; };
+		BFA08BE41CF723670052E058 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA08BE31CF723670052E058 /* GraphView.swift */; };
 		BFBF36381CA076D600D178DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF36371CA076D600D178DF /* AppDelegate.swift */; };
 		BFBF363A1CA076D600D178DF /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF36391CA076D600D178DF /* CalculatorViewController.swift */; };
 		BFBF363D1CA076D600D178DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFBF363B1CA076D600D178DF /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		BF916EF21CA3046500324910 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		BFA08BDE1CF715DD0052E058 /* AxesDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesDrawer.swift; sourceTree = "<group>"; };
+		BFA08BE11CF71C910052E058 /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		BFA08BE31CF723670052E058 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		BFBF36341CA076D600D178DF /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBF36371CA076D600D178DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFBF36391CA076D600D178DF /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
@@ -115,10 +119,12 @@
 		BFBF36361CA076D600D178DF /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				BF916EF21CA3046500324910 /* CalculatorBrain.swift */,
-				BFA08BDE1CF715DD0052E058 /* AxesDrawer.swift */,
-				BFBF36391CA076D600D178DF /* CalculatorViewController.swift */,
 				BFBF363B1CA076D600D178DF /* Main.storyboard */,
+				BF916EF21CA3046500324910 /* CalculatorBrain.swift */,
+				BFBF36391CA076D600D178DF /* CalculatorViewController.swift */,
+				BFA08BDE1CF715DD0052E058 /* AxesDrawer.swift */,
+				BFA08BE31CF723670052E058 /* GraphView.swift */,
+				BFA08BE11CF71C910052E058 /* GraphViewController.swift */,
 				BFA08BE01CF71B500052E058 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -275,7 +281,9 @@
 			files = (
 				BFBF363A1CA076D600D178DF /* CalculatorViewController.swift in Sources */,
 				BFBF36381CA076D600D178DF /* AppDelegate.swift in Sources */,
+				BFA08BE41CF723670052E058 /* GraphView.swift in Sources */,
 				BFA08BDF1CF715DD0052E058 /* AxesDrawer.swift in Sources */,
+				BFA08BE21CF71C910052E058 /* GraphViewController.swift in Sources */,
 				BF916EF31CA3046500324910 /* CalculatorBrain.swift in Sources */,
 				BFBF36401CA076D600D178DF /* Calculator.xcdatamodeld in Sources */,
 			);
