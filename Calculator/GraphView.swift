@@ -21,7 +21,6 @@ protocol GraphViewDataSource: class {
   weak var dataSource: GraphViewDataSource?
 
   override func drawRect(rect: CGRect) {
-    var path: UIBezierPath?
 
     if origin == nil {
       origin = center
@@ -30,9 +29,8 @@ protocol GraphViewDataSource: class {
     let axes = AxesDrawer(color: UIColor.darkGrayColor(), contentScaleFactor: contentScaleFactor)
     axes.drawAxesInRect(rect, origin: origin!, pointsPerUnit: scale)
 
-    path = makeGraphPath()
     UIColor.blueColor().setStroke()
-    path?.stroke()
+    makeGraphPath().stroke()
   }
 
   func panGraph(gesture: UIPanGestureRecognizer) {
@@ -64,6 +62,7 @@ protocol GraphViewDataSource: class {
     for x in Int(bounds.minX)...Int(bounds.maxX) {
       let visualX = CGFloat(x)
       let actualX = Double((visualX - round(origin!.x)) / scale)
+
       if let actualY = dataSource?.calculateYfor(actualX) where (actualY.isNormal || actualY.isZero) {
         let visualY: CGFloat = round(origin!.y) - (CGFloat(actualY) * scale)
         let thisPoint = CGPointMake(visualX, visualY)
