@@ -27,7 +27,7 @@ protocol GraphViewDataSource: class {
       origin = center
     }
 
-    let axes = AxesDrawer(color: UIColor.darkGrayColor())
+    let axes = AxesDrawer(color: UIColor.darkGrayColor(), contentScaleFactor: contentScaleFactor)
     axes.drawAxesInRect(rect, origin: origin!, pointsPerUnit: scale)
 
     path = makeGraphPath()
