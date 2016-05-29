@@ -384,7 +384,7 @@
             </objects>
             <point key="canvasLocation" x="1416" y="134"/>
         </scene>
-        <!--Graph-->
+        <!--Graph View Controller-->
         <scene sceneID="3nw-6r-pWq">
             <objects>
                 <viewController id="ra6-gv-B7a" customClass="GraphViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -421,9 +421,10 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Graph" id="NDm-oT-sYT"/>
+                    <navigationItem key="navigationItem" id="NDm-oT-sYT"/>
                     <connections>
                         <outlet property="graph" destination="LWn-ow-73Y" id="11L-fp-Kgu"/>
+                        <outlet property="graphDescription" destination="NDm-oT-sYT" id="pxP-Rr-UUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlR-t5-Jc4" userLabel="First Responder" sceneMemberID="firstResponder"/>

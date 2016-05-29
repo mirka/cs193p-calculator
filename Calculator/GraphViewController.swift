@@ -10,7 +10,14 @@ import UIKit
 
 class GraphViewController: UIViewController, GraphViewDataSource {
   private let calculatorBrain = CalculatorBrain()
-  var program: AnyObject? { didSet { calculatorBrain.program = program! } }
+  var program: AnyObject? {
+    didSet {
+      calculatorBrain.program = program!
+      let brainString = calculatorBrain.description
+      let lastExpression = brainString.characters.split(",").last
+      graphDescription.title = lastExpression.map(String.init)
+    }
+  }
 
   @IBOutlet weak var graph: GraphView! {
     didSet {
@@ -19,6 +26,8 @@ class GraphViewController: UIViewController, GraphViewDataSource {
       graph.addGestureRecognizer(UIPinchGestureRecognizer(target: graph, action: #selector(GraphView.scaleGraph)))
     }
   }
+
+  @IBOutlet weak var graphDescription: UINavigationItem!
 
   @IBAction func setOrigin(tap: UITapGestureRecognizer) {
     graph.setOrigin(tap)
