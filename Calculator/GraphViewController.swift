@@ -9,7 +9,7 @@
 import UIKit
 
 class GraphViewController: UIViewController, GraphViewDataSource {
-  let calculatorBrain = CalculatorBrain()
+  private let calculatorBrain = CalculatorBrain()
   var program: AnyObject? { didSet { calculatorBrain.program = program! } }
 
   @IBOutlet weak var graph: GraphView! {
