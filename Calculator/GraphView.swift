@@ -64,7 +64,7 @@ protocol GraphViewDataSource: class {
     for x in Int(bounds.minX)...Int(bounds.maxX) {
       let visualX = CGFloat(x)
       let actualX = Double((visualX - origin!.x) / scale)
-      if let actualY = dataSource?.calculateYfor(actualX) {
+      if let actualY = dataSource?.calculateYfor(actualX) where (actualY.isNormal || actualY.isZero) {
         let visualY: CGFloat = origin!.y - (CGFloat(actualY) * scale)
         let thisPoint = CGPointMake(visualX, visualY)
         previousEvaluationWasValid ? path.addLineToPoint(thisPoint) : path.moveToPoint(thisPoint)
