@@ -8,16 +8,31 @@
 
 import UIKit
 
-class GraphView: UIView {
+protocol GraphViewDataSource: class {
+  var program: AnyObject? { get set }
+  func calculateYfor(x: Double) -> Double?
+}
+
+@IBDesignable class GraphView: UIView {
+  
   @IBInspectable var origin: CGPoint? { didSet { setNeedsDisplay() } }
-  @IBInspectable var scale: CGFloat = 50 { didSet { setNeedsDisplay() } }
+  @IBInspectable var scale: CGFloat = 10 { didSet { setNeedsDisplay() } }
+
+  weak var dataSource: GraphViewDataSource?
 
   override func drawRect(rect: CGRect) {
+    var path: UIBezierPath?
+
     if origin == nil {
       origin = center
     }
+
     let axes = AxesDrawer(color: UIColor.darkGrayColor())
     axes.drawAxesInRect(rect, origin: origin!, pointsPerUnit: scale)
+
+    path = makeGraphPath()
+    UIColor.blueColor().setStroke()
+    path?.stroke()
   }
 
   func panGraph(gesture: UIPanGestureRecognizer) {
@@ -41,4 +56,24 @@ class GraphView: UIView {
   func setOrigin(tap: UITapGestureRecognizer) {
     origin = tap.locationInView(self)
   }
+
+  private func makeGraphPath() -> UIBezierPath {
+    let path = UIBezierPath()
+    var previousEvaluationWasValid = false
+
+    for x in Int(bounds.minX)...Int(bounds.maxX) {
+      let visualX = CGFloat(x)
+      let actualX = Double((visualX - origin!.x) / scale)
+      if let actualY = dataSource?.calculateYfor(actualX) {
+        let visualY: CGFloat = origin!.y - (CGFloat(actualY) * scale)
+        let thisPoint = CGPointMake(visualX, visualY)
+        previousEvaluationWasValid ? path.addLineToPoint(thisPoint) : path.moveToPoint(thisPoint)
+        previousEvaluationWasValid = true
+      } else {
+        previousEvaluationWasValid = false
+      }
+    }
+    return path
+  }
+
 }

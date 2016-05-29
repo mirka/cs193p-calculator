@@ -8,10 +8,13 @@
 
 import UIKit
 
-class GraphViewController: UIViewController {
+class GraphViewController: UIViewController, GraphViewDataSource {
+  let calculatorBrain = CalculatorBrain()
+  var program: AnyObject? { didSet { calculatorBrain.program = program! } }
 
   @IBOutlet weak var graph: GraphView! {
     didSet {
+      graph.dataSource = self
       graph.addGestureRecognizer(UIPanGestureRecognizer(target: graph, action: #selector(GraphView.panGraph)))
       graph.addGestureRecognizer(UIPinchGestureRecognizer(target: graph, action: #selector(GraphView.scaleGraph)))
     }
@@ -21,7 +24,8 @@ class GraphViewController: UIViewController {
     graph.setOrigin(tap)
   }
 
-  private func updateUI() {
-    graph.setNeedsDisplay()
+  func calculateYfor(x: Double) -> Double? {
+    calculatorBrain.variableValues["M"] = x
+    return calculatorBrain.evaluate()
   }
 }

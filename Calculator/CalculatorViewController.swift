@@ -128,6 +128,15 @@ class CalculatorViewController: UIViewController {
     }
   }
 
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    var destination = segue.destinationViewController
+    if let navigationController = destination as? UINavigationController {
+      destination = navigationController.visibleViewController!
+    }
+    if let graphViewController = destination as? GraphViewDataSource {
+      graphViewController.program = brain.program
+    }
+  }
   
 }
 
